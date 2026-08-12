@@ -7,6 +7,7 @@ class MyHomePage extends StatefulWidget {
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
+
 }
 
 class _MyHomePageState extends State<MyHomePage> {
@@ -38,7 +39,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 return ListTile(
                   leading: Checkbox(value: false, onChanged: (_) {}),
                   title: Text('This is title'),
-                  trailing: Row(
+                   trailing: Row(
+
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       IconButton(onPressed: (){}, icon: Icon(Icons.edit, color: Colors.orange)),
