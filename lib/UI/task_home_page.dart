@@ -1,3 +1,5 @@
+import 'package:basic_sql/Model/task.dart';
+import 'package:basic_sql/database/task_database.dart';
 import 'package:flutter/material.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -11,6 +13,28 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+TextEditingController taskController = TextEditingController();
+
+
+@override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    refreshTask();
+  }
+
+List<Task>tasks = [];
+
+Future<void>refreshTask() async{
+  tasks = (await TaskDatabase.getTask());
+  setState(() {
+
+  });
+}
+
+Future<void>addTask()async{
+ await TaskDatabase.insertTask(Task(title: taskController.text, isDone: false));
+}
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -4,7 +4,7 @@ class Task{
   final bool isDone;
 
 
-  Task({required this.id, this.title, required this.isDone});// constructor
+  Task({ this.id, this.title, required this.isDone});// constructor
 
   Map<String, dynamic> toMap(){
     return {

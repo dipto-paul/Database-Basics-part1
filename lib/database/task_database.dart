@@ -18,7 +18,7 @@ class TaskDatabase { // creating database
     );
     return db!;
   }
-  static Future<List<Task>?>getTask(Task task) async {
+  static Future<List<Task>>getTask() async {
     final db = await getDB();
     final List<Map<String, dynamic>> maps = await db.query('tasks');
     return List.generate(maps.length, (i)=> Task.fromMap(maps[i]));
