@@ -36,5 +36,10 @@ class TaskDatabase { // creating database
   }
 
 
+// for update
+  static Future<void>updateTask(Task task) async {
+    final db = await getDB();
+    db.update('tasks', task.toMap(),where: 'id=?', whereArgs: [task.id]);
+  }
 
 }

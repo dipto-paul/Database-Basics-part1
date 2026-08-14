@@ -33,6 +33,11 @@ Future<void>refreshTask() async{
   });
 }
 
+Future<void>deleteTask(int id) async{
+(await TaskDatabase.deleteTask(id));
+  refreshTask();
+}
+
 Future<void>addTask()async{
   if(taskController.text.isNotEmpty){
     await TaskDatabase.insertTask(Task(title: taskController.text, isDone: false));
@@ -78,7 +83,9 @@ Future<void>addTask()async{
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       IconButton(onPressed: (){}, icon: Icon(Icons.edit, color: Colors.orange)),
-                      IconButton(onPressed: (){}, icon: Icon(Icons.delete, color: Colors.red)),
+                      IconButton(onPressed: (){
+                        deleteTask(task.id!);
+                      }, icon: Icon(Icons.delete, color: Colors.red)),
 
                     ],
                   ),
