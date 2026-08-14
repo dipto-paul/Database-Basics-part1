@@ -51,7 +51,9 @@ Future<void>addTask()async{
             children: [
               Expanded(child: TextFormField()),
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  addTask();
+                },
                 icon: Icon(Icons.add),
                 color: Colors.black,
               ),
@@ -59,7 +61,7 @@ Future<void>addTask()async{
           ),
           Expanded(
             child: ListView.builder(
-              itemCount: 10,
+              itemCount: tasks.length,
               itemBuilder: (context, index) {
                 return ListTile(
                   leading: Checkbox(value: false, onChanged: (_) {}),
