@@ -1,8 +1,9 @@
 
+import 'package:basic_sql/Model/task.dart';
 import 'package:path/path.dart' as p;
 import 'package:sqflite/sqflite.dart';
 
-class TaskDatabase {
+class TaskDatabase { // creating database
   static Database ? db;
 
   static Future<Database>getDB() async{
@@ -16,6 +17,11 @@ class TaskDatabase {
       version: 2
     );
     return db!;
-
   }
+  static Future<List<Task>?>getTask(Task task) async {
+    final db = await getDB();
+    final List<Map<String, dynamic>> maps = await db.query('tasks');
+    return List.generate(maps.length, (i)=> Task.fromMap(maps[i]));
+  }
+
 }
