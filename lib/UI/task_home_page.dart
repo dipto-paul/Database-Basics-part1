@@ -38,6 +38,15 @@ Future<void>deleteTask(int id) async{
   refreshTask();
 }
 
+
+
+Future<void>toggleTask(Task task) async{
+  (await TaskDatabase.updateTask(
+    Task(id: task.id,title: task.title, isDone: !task.isDone)
+  ));
+  refreshTask();
+}
+
 Future<void>addTask()async{
   if(taskController.text.isNotEmpty){
     await TaskDatabase.insertTask(Task(title: taskController.text, isDone: false));
@@ -76,7 +85,9 @@ Future<void>addTask()async{
               itemBuilder: (context, index) {
                 final task = tasks[index];
                 return ListTile(
-                  leading: Checkbox(value: false, onChanged: (_) {}),
+                  leading: Checkbox(value: task.isDone, onChanged: (_) {
+                    toggleTask(task);
+                  }),
                   title: Text(task.title ?? ''),
                    trailing: Row(
 
