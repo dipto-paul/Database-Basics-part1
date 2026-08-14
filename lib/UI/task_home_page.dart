@@ -34,7 +34,11 @@ Future<void>refreshTask() async{
 }
 
 Future<void>addTask()async{
- await TaskDatabase.insertTask(Task(title: taskController.text, isDone: false));
+  if(taskController.text.isNotEmpty){
+    await TaskDatabase.insertTask(Task(title: taskController.text, isDone: false));
+    taskController.clear();
+    refreshTask();
+  }
 }
   @override
   Widget build(BuildContext context) {
@@ -49,7 +53,9 @@ Future<void>addTask()async{
         children: [
           Row(
             children: [
-              Expanded(child: TextFormField()),
+              Expanded(child: TextFormField(
+                controller: taskController,
+              )),
               IconButton(
                 onPressed: () {
                   addTask();
@@ -63,9 +69,10 @@ Future<void>addTask()async{
             child: ListView.builder(
               itemCount: tasks.length,
               itemBuilder: (context, index) {
+                final task = tasks[index];
                 return ListTile(
                   leading: Checkbox(value: false, onChanged: (_) {}),
-                  title: Text('This is title'),
+                  title: Text(task.title ?? ''),
                    trailing: Row(
 
                     mainAxisSize: MainAxisSize.min,
