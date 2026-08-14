@@ -24,4 +24,10 @@ class TaskDatabase { // creating database
     return List.generate(maps.length, (i)=> Task.fromMap(maps[i]));
   }
 
+
+  static Future<List<Task>?>insertTask(Task task) async {
+    final db = await getDB();
+    db.insert('tasks', task.toMap());
+  }
+
 }
