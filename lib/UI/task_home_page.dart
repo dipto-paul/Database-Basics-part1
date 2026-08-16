@@ -26,6 +26,8 @@ TextEditingController taskController = TextEditingController();
 
 List<Task>tasks = [];
 
+
+
 Future<void>refreshTask() async{
   tasks = (await TaskDatabase.getTask());
   setState(() {
@@ -97,7 +99,6 @@ Future<void>addTask()async{
                       IconButton(onPressed: (){
                         deleteTask(task.id!);
                       }, icon: Icon(Icons.delete, color: Colors.red)),
-
                     ],
                   ),
                 );
