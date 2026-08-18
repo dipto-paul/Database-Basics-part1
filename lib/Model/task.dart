@@ -14,6 +14,7 @@ class Task{
     };
   }
 
+  // map theke object create
 factory Task.fromMap(Map<String, dynamic>map){
     return Task(id: map['id'], title: map['title'], isDone: map['isDone']== 1);
 }
